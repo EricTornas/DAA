@@ -26,6 +26,7 @@ def run_all_tests():
         expected_output = expected_output_file.read()
         
         passed_dp, actual_output_dp = run_test(test_input, expected_output, 'dp')
+        passed_dp_opt, actual_output_dp_opt = run_test(test_input, expected_output, 'dp_opt')
         passed_bfs, actual_output_bfs = run_test(test_input, expected_output, 'bfs')
         
     if passed_dp:
@@ -34,6 +35,13 @@ def run_all_tests():
         print(f"Test DP: FAILED")
         print(f"Expected: {expected_output}")
         print(f"Actual: {actual_output_dp}")
+
+    if passed_dp_opt:
+        print(f"Test DP OPT: PASSED")
+    else:
+        print(f"Test DP OPT: FAILED")
+        print(f"Expected: {expected_output}")
+        print(f"Actual: {actual_output_dp_opt}")
 
     if passed_bfs:
         print(f"Test BFS: PASSED")
