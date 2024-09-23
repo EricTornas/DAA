@@ -11,7 +11,7 @@ max_val = A[0][2]
 dp[0] = max_val
 for i in range (1, t):
     aux = 0
-    for j in range(0, -i):
+    for j in range(t-1, -1 , -1):
         if A[i][1] > A[j][0] and dp[j] > aux:
             aux = dp[j]
     dp[i] = aux + A[i][2]    
