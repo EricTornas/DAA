@@ -2,22 +2,20 @@ from collections import defaultdict
 
 def dfs(u, parent, colors, adj, fq):
     global count
+    fq[u][colors[u] - 1] = 1
     for v in adj[u]:
         if v != parent:
             dfs(v, u, colors, adj, fq)
-    fq[u][colors[u] - 1] = 1
-    for c in range(0, len(colors)):
-        for v in adj[u]:
-            if v != parent:
+            for c in range(0, len(colors)):
                 if c == colors[u] - 1:
                     count += fq[v][c]
                 else:
                     count += fq[v][c] * fq[u][c]
                     fq[u][c] += fq[v][c]
 
+
 t = int(input())
-
-
+result = []
 for _ in range(t):
     count = 0
     n = int(input())
@@ -28,7 +26,7 @@ for _ in range(t):
         u, v = map(int, input().split())
         adj[u-1].append(v-1)
         adj[v-1].append(u-1)
-    
-    
+
+
     dfs(0, -1, colors, adj, fq)
     print(count)
